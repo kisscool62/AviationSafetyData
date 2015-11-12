@@ -14,7 +14,8 @@ year_links.each do |year_link|
         accidents.each do |accident|
             puts accident
         end
+        exit
     end
-
+    exit
 end
 

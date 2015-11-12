@@ -29,4 +29,17 @@ class Accident
             @destination_airport = destination_airport
             @flight_number = flight_number
     end
+
+    def self.build(map)
+            puts map
+            return Accident.new(status, date,
+                                time, type,
+                                operator,registration,
+                                first_flight, engines,
+                                crew, passengers,
+                                airplane_damage, airplane_fate,
+                                location, phase, nature,
+                                departure_airport, destination_airport,
+                                flight_number)
+    end
 end

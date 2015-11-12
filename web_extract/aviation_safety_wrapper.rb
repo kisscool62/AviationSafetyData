@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'mechanize'
+load 'accident.rb'
 
 class String
     def numeric?
@@ -25,7 +26,7 @@ class AviationSafetyWrapper
             puts tds[0].text
             puts tds[1].text
             puts "###########################"
-            map = {:attr_name => tds[0].text, :attr_value => tds[1].text}
+            map.merge({tds[0].text => tds[1].text})
         end
         return map
     end
@@ -33,8 +34,8 @@ class AviationSafetyWrapper
     def wrap_accident_page(link)
         a = Mechanize.new
         a.get(@@WEB_SITE_ROOT + link.href) do |page|
-            map = wrap_accident_table(page.search('table').search('tr'))
-            return map
+            map = wrap_accident_table(page.search('//table[not(@class = "hp")]').search('tr'))
+            return Accident.build(map)
         end
 
     end

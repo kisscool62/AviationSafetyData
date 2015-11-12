@@ -20,13 +20,7 @@ class AviationSafetyWrapper
         map = Hash.new
         tr_list.each do |tr|
             tds = tr.search('td')
-            puts "########################"
-            puts tds
-            puts "##############"
-            puts tds[0].text
-            puts tds[1].text
-            puts "###########################"
-            map.merge({tds[0].text => tds[1].text})
+            map[tds[0].text.downcase.tr(':', '').tr(' ', '_').strip] = tds[1].text.strip
         end
         return map
     end

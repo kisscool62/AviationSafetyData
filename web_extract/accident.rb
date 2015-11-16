@@ -32,7 +32,6 @@ class Accident
     end
 
     def self.build(map)
-            puts map
             return Accident.new(map["status"], map["date"],
                                 map["time"], map["type"],
                                 map["operator"], map["registration"],

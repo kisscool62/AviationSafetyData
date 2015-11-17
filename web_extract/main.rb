@@ -11,20 +11,14 @@ year_links.each do |year_link|
     accident_links.each do |accident_link|
         puts(accident_link)
         accidents+=[avw.wrap_accident_page(accident_link)]
-        #p accidents
-        break
     end
-    break
 end
 
 CSV.open("aviation_safety_data.csv", "wb") do |csv|
     variable_names = accidents[0].instance_variables
-    csv.col_sep = ";"
     csv << variable_names
     accidents.each do |accident|
-        values = variable_names.map do |variable_name|
-            accident.instance_variable_get(variable_name)
-        end
+        values = accident.to_map_from_variable_list(variable_names)
         csv << values
     end
 end

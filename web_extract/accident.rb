@@ -42,4 +42,15 @@ class Accident
                                 map["departure_airport"], map["destination_airport"],
                                 map["flightnumber"])
     end
+
+    def self.to_map_from_variable_list(wanted_variable_names)
+        return wanted_variable_names.map do |variable_name|
+                    self.instance_variable_get(variable_name)
+         end
+
+    end
+
+    def self.to_map
+            return self.to_map_from_variable_list(self.instance_variables)
+    end
 end

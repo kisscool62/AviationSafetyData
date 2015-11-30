@@ -34,7 +34,7 @@ class Accident
     def self.build(map)
             return Accident.new(map["status"], map["date"],
                                 map["time"], map["type"],
-                                map["operator"], map["registration"],
+                                map["operator"]!=nil ? map["operator"] : map["operating_for"], map["registration"],
                                 map["first_flight"], map["total_airframe_hrs"], map["engines"],
                                 map["crew"], map["passengers"],
                                 map["airplane_damage"], map["airplane_fate"],
@@ -43,7 +43,7 @@ class Accident
                                 map["flightnumber"])
     end
 
-    def self.to_map_from_variable_list(wanted_variable_names)
+    def to_map_from_variable_list(wanted_variable_names)
         return wanted_variable_names.map do |variable_name|
                     self.instance_variable_get(variable_name)
          end

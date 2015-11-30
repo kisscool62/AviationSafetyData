@@ -1,5 +1,6 @@
 load 'aviation_safety_wrapper.rb'
 require 'CSV'
+load 'accident.rb'
 
 avw = AviationSafetyWrapper.new
 

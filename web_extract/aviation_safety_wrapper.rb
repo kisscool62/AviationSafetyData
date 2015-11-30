@@ -15,6 +15,7 @@ end
 
 class AviationSafetyWrapper
     @@WEB_SITE_ROOT = 'http://aviation-safety.net'
+    @@MIN_YEAR = 1995
 
     def wrap_accident_table(tr_list)
         map = Hash.new
@@ -60,7 +61,7 @@ class AviationSafetyWrapper
 
     def correct_year_links(link)
         text = link.text.strip
-        return true if text.length > 0 and text.numeric? and Integer(text) >= 2004 rescue false
+        return true if text.length > 0 and text.numeric? and Integer(text) >= @@MIN_YEAR rescue false
     end
 
 end
